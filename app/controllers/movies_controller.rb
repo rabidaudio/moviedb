@@ -1,11 +1,11 @@
 class MoviesController < ApplicationController
 
-  def get_poster
-    data = Movie.find(params[:id]).get_poster
-    if data
+  def poster
+    @movie = Movie.find params[:id]
+    if !@movie.nil? and !@movie.poster.nil?
       send_data blob, :type => 'image/png', :disposition => 'inline'
     else
-      render body: nil, status: 404
+      render body: nil, status: 404 #TODO
     end
   end
 
@@ -14,7 +14,41 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.imdb_find params[:id]
-    render json: @movie #TODO
+    @movie = Movie.find params[:id]
+  end
+
+  # BLOCKED METHODS
+  def index
+    render_error :FORBIDDEN
+  end
+
+  def create
+    render_error :FORBIDDEN
+  end
+
+  def edit
+    render_error :FORBIDDEN
+  end
+
+  def update
+    render_error :FORBIDDEN
+  end
+
+  def destroy
+    render_error :FORBIDDEN
+  end
+
+  def new
+    render_error :FORBIDDEN
   end
 end
+
+
+# HTTP Verb Path  Controller#Action Used for
+# GET /photos photos#index  display a list of all photos
+# GET /photos/new photos#new  return an HTML form for creating a new photo
+# POST  /photos photos#create create a new photo
+# GET /photos/:id photos#show display a specific photo
+# GET /photos/:id/edit  photos#edit return an HTML form for editing a photo
+# PATCH/PUT /photos/:id photos#update update a specific photo
+# DELETE  /photos/:id photos#destroy  delete a specific photo

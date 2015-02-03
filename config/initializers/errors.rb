@@ -1,0 +1,1 @@
+Rails.application.config.errors = YAML.load_file(File.expand_path('../../errors.yml', __FILE__))

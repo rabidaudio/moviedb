@@ -1,12 +1,13 @@
 class Movie < ActiveRecord::Base
 
-  def self.imdb_find imdb_id
-    m = Movie.find_by imdb_id: imdb_id
-    if m.nil?
-      m = Movie.new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
-      m.save
+  # overload find with imdb_id
+  def self.find imdb_id
+    movie = Movie.find_by imdb_id: imdb_id
+    if movie.nil? # If it isn't in the database already, make one from OMDB
+      movie = Movie.new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
+      movie.save
     end
-    m
+    movie
   end
 
   # overload accessors to get arrays from strings

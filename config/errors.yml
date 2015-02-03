@@ -1,0 +1,10 @@
+UNAUTHORIZED:
+  status: 401
+  message: This method requires authorization
+  docs_url: TODO
+FORBIDDEN:
+  status: 403
+  message: This method is unavailable
+INVALID:
+  status: 404
+  message: This is not a valid method
