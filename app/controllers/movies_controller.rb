@@ -1,4 +1,4 @@
-class MovieController < ApplicationController
+class MoviesController < ApplicationController
 
   def get_poster
     data = Movie.find(params[:id]).get_poster
@@ -11,5 +11,10 @@ class MovieController < ApplicationController
 
   def search
     render json: Omdb::Api.new.search(params[:q])[:movies]
+  end
+
+  def show
+    @movie = Movie.imdb_find params[:id]
+    render json: @movie #TODO
   end
 end

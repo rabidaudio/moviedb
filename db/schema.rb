@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203045821) do
+ActiveRecord::Schema.define(version: 20150203061237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150203045821) do
     t.string   "title"
     t.integer  "year"
     t.string   "imdb_id"
-    t.string   "type"
+    t.string   "media_type"
     t.date     "released"
     t.string   "runtime"
     t.string   "genre"
@@ -33,8 +33,11 @@ ActiveRecord::Schema.define(version: 20150203045821) do
     t.string   "language"
     t.string   "country"
     t.string   "awards"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "rated"
+    t.string   "imdb_rating"
+    t.string   "imdb_votes"
   end
 
 end

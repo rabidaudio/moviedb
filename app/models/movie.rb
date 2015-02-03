@@ -1,35 +1,43 @@
 class Movie < ActiveRecord::Base
 
-  def self.create_from_omdb(omdb_movie)
-    Movie.new({
-      title:        omdb_movie.title,
-      loaded:       omdb_movie.loaded,
-      year:         omdb_movie.year,
-      rated:        omdb_movie.rated,
-      released:     omdb_movie.released,
-      runtime:      omdb_movie.runtime,
-      genre:        omdb_movie.genre,
-      director:     omdb_movie.director,
-      writer:       omdb_movie.writer,
-      actors:       omdb_movie.actors,
-      plot:         omdb_movie.plot,
-      imdb_rating:  omdb_movie.imdb_rating,
-      imdb_votes:   omdb_movie.imdb_votes,
-      imdb_id:      omdb_movie.imdb_id,
-      type:         omdb_movie.type,
-      metascore:    omdb_movie.metascore,
-      language:     omdb_movie.language,
-      country:      omdb_movie.country,
-      awards:       omdb_movie.awards
-    })
+  def self.imdb_find(imdb_id)
+    m = Movie.find_by(imdb_id: imdb_id)
+    if m.nil?
+      m = MoviesHelper.fetch(imdb_id)
+    end
+    m
   end
 
-  def get_poster
-    if poster.nil?
-      poster = MovieHelper.get_poster(id)
-    end
-    poster
-  end
+  # def self.create_from_omdb(omdb_movie)
+  #   Movie.new({
+  #     title:        omdb_movie.title,
+  #     loaded:       omdb_movie.loaded,
+  #     year:         omdb_movie.year,
+  #     rated:        omdb_movie.rated,
+  #     released:     omdb_movie.released,
+  #     runtime:      omdb_movie.runtime,
+  #     genre:        omdb_movie.genre,
+  #     director:     omdb_movie.director,
+  #     writer:       omdb_movie.writer,
+  #     actors:       omdb_movie.actors,
+  #     plot:         omdb_movie.plot,
+  #     imdb_rating:  omdb_movie.imdb_rating,
+  #     imdb_votes:   omdb_movie.imdb_votes,
+  #     imdb_id:      omdb_movie.imdb_id,
+  #     type:         omdb_movie.type,
+  #     metascore:    omdb_movie.metascore,
+  #     language:     omdb_movie.language,
+  #     country:      omdb_movie.country,
+  #     awards:       omdb_movie.awards
+  #   })
+  # end
+
+  # def get_poster
+  #   if poster.nil?
+  #     poster = MovieHelper.get_poster(id)
+  #   end
+  #   poster
+  # end
 
   # def get_poster
   #   if poster.nil?
