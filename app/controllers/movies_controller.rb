@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def poster
     @movie = Movie.find params[:id]
     if !@movie.nil? and !@movie.poster.nil?
-      send_data blob, :type => 'image/png', :disposition => 'inline'
+      send_data @movie.poster, :type => 'image/png', :disposition => 'inline'
     else
       render body: nil, status: 404 #TODO
     end

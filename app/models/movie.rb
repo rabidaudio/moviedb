@@ -2,13 +2,22 @@ class Movie < ActiveRecord::Base
 
   # overload find with imdb_id
   def self.find imdb_id
-    movie = Movie.find_by imdb_id: imdb_id
+    movie = find_by imdb_id: imdb_id
     if movie.nil? # If it isn't in the database already, make one from OMDB
-      movie = Movie.new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
+      movie = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
       movie.save
     end
     movie
   end
+
+  def poster
+    if self[:poster].nil?
+      #todo handle "Error: API Key Not Valid!"
+      self[:poster] = Net::HTTP.get URI("http://img.omdbapi.com/?apikey=23aff83a&i=#{imdb_id}")
+    end
+    self[:poster]
+  end
+
 
   # overload accessors to get arrays from strings
   def genre
@@ -24,14 +33,6 @@ class Movie < ActiveRecord::Base
     convert_arrays(:actors)
   end
 
-  def poster
-    if self[:poster].nil?
-      #todo handle "Error: API Key Not Valid!"
-      self[:poster] = Net::HTTP.get URI("http://img.omdbapi.com/?apikey=23aff83a&i=#{imdb_id}")
-    end
-    self[:poster]
-  end
-
   # convert comma-separated strings to arrays
   private 
   def convert_arrays attribute
@@ -39,7 +40,7 @@ class Movie < ActiveRecord::Base
   end
 
   # Convert the Omdb::Movie object to a Hash to be saved as a new Movie
-  def omdb_to_hash(omdb_movie)
+  def self.omdb_to_hash(omdb_movie)
 
     #copy accessors as hash: http://stackoverflow.com/a/16212180
     h = omdb_movie.instance_values.symbolize_keys
