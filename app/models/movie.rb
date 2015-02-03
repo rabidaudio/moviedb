@@ -13,7 +13,8 @@ class Movie < ActiveRecord::Base
   def poster
     if self[:poster].nil?
       #todo handle "Error: API Key Not Valid!"
-      self[:poster] = Net::HTTP.get URI("http://img.omdbapi.com/?apikey=23aff83a&i=#{imdb_id}")
+      key = Moviedb::Application.config.OMDB_KEY
+      self[:poster] = Net::HTTP.get URI("http://img.omdbapi.com/?apikey=#{key}&i=#{imdb_id}")
     end
     self[:poster]
   end
