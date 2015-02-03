@@ -1,0 +1,1 @@
+Moviedb::Application.config.OMDB_KEY = ENV["omdb_key"]
