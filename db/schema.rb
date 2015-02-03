@@ -33,11 +33,24 @@ ActiveRecord::Schema.define(version: 20150203061237) do
     t.string   "language"
     t.string   "country"
     t.string   "awards"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "rated"
     t.string   "imdb_rating"
     t.string   "imdb_votes"
+    t.string   "tomato_meter"
+    t.string   "tomato_rating"
+    t.string   "tomato_reviews"
+    t.string   "tomato_fresh"
+    t.string   "tomato_rotten"
+    t.string   "tomato_consensus"
+    t.string   "tomato_user_meter"
+    t.string   "tomato_user_rating"
+    t.string   "tomato_user_reviews"
+    t.string   "dvd"
+    t.string   "box_office"
+    t.string   "production"
+    t.string   "website"
   end
 
 end

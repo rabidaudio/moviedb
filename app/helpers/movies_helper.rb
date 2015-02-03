@@ -9,35 +9,25 @@ module MoviesHelper
     return m
   end
 
-  # TODO convert "N/A" to nil
   private
   def self.omdb_to_hash(omdb_movie)
-    {
-      title:        omdb_movie.title,
-      # loaded:       omdb_movie.loaded,
-      year:         omdb_movie.year,
-      rated:        omdb_movie.rated,
-      runtime:      omdb_movie.runtime,
 
-      released:     Date.parse(omdb_movie.released),
+    #copy accessors as hash: http://stackoverflow.com/a/16212180
+    h = omdb_movie.instance_values.symbolize_keys
 
-      genre:        cds_to_a(omdb_movie.genre),
-      director:     cds_to_a(omdb_movie.director),
-      writer:       cds_to_a(omdb_movie.writer),
-      actors:       cds_to_a(omdb_movie.actors),
-      plot:         omdb_movie.plot,
-      imdb_rating:  omdb_movie.imdb_rating,
-      imdb_votes:   omdb_movie.imdb_votes,
-      imdb_id:      omdb_movie.imdb_id,
-      media_type:   omdb_movie.type,
-      metascore:    omdb_movie.metascore,
-      language:     omdb_movie.language,
-      country:      omdb_movie.country,
-      awards:       omdb_movie.awards
-    }
-  end
-  # convert comma-delimited strings to arrays
-  def self.cds_to_a(string)
-    string.split(",").map{ |s| s.strip }
+    # replace reserved word "type"
+    h[:media_type] = h[:type]
+    h.delete :type
+    h.delete :poster # separate requests for blobs
+
+    # other subsitutions:
+    h.each do |key, val|
+      puts val
+      if val == "N/A"
+        h[key] = nil
+      elsif key.in? [:released]
+        h[key] = Date.parse(val) #convert to date
+      end
+    end
   end
 end
