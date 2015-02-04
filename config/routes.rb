@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   get 'search' => 'movies#search'
 
   resources :movies do 
-    # get 'poster' => 'movies#poster'
+    get 'poster' => 'movies#poster'
   end
-  get 'movies/:id/poster' => 'movies#poster'
+  # get 'movies/:id/poster' => 'movies#poster'
 
-  resources :users
-  resources :viewings
+  resources :users do
+    resources :viewings, shallow: true
+  end
 
   #auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]

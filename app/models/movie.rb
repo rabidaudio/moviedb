@@ -21,6 +21,11 @@ class Movie < ActiveRecord::Base
     self[:poster]
   end
 
+  # We're using imdb_id as id, but if something Rails-y *insists* on :id, let's give it to 'em
+  def id
+    imdb_id
+  end
+
   # overload accessors to get arrays from strings
   def genre
     convert_arrays(:genre)
@@ -50,6 +55,7 @@ class Movie < ActiveRecord::Base
     # replace reserved word "type"
     h[:media_type] = h[:type]
     h.delete :type
+    # replace imdb_id with id
     h.delete :poster # separate requests for blobs
 
     # other subsitutions:

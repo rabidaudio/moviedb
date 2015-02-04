@@ -1,5 +1,21 @@
--if @movie.poster
-  img.poster src= url_for(controller: 'movies', action: 'poster', id: @movie.imdb_id)
-h1.title = @movie.title
-- if @movie.plot
-  p.plot = @movie.plot
+.movie-block
+  -if @movie.poster||true
+    img.poster src= movie_poster_path(@movie)
+  a href= "http://imdb.com/title/#{@movie.imdb_id}"
+    h1.title = "#{@movie.title} (#{@movie.year})"
+
+  ul.details
+    li.language = "Language: #{@movie.language}" if @movie.language
+    li.country = "Country: #{@movie.country}" if @movie.country
+    li.rated = "Rated: #{@movie.rated}" if @movie.rated
+    li.runtime = "Runtime: #{@movie.runtime}" if @movie.runtime
+    li.
+  - if @movie.plot
+    h3 Plot
+    p.plot = @movie.plot
+  -if @movie.awards
+    p.awards = @movie.awards
+
+
+
+/ #<Movie title: "Portlandia", year: 2011, id: nil, media_type: "series", released: "2011-01-21", runtime: "22 min", genre: "Comedy", director: nil, writer: "Fred Armisen, Carrie Brownstein, Jonathan Krisel", actors: "Fred Armisen, Carrie Brownstein", plot: "A sketch-comedy series that parodies life in Portl...", poster: nil, metascore: nil, language: "English", country: "USA", awards: "Won 2 Primetime Emmys. Another 4 wins & 12 nominat...", created_at: "2015-02-04 18:12:12", updated_at: "2015-02-04 18:12:12", rated: nil, imdb_rating: "7.8", imdb_votes: "9,688", tomato_meter: nil, tomato_rating: nil, tomato_reviews: nil, tomato_fresh: nil, tomato_rotten: nil, tomato_consensus: nil, tomato_user_meter: nil, tomato_user_rating: nil, tomato_user_reviews: nil, dvd: nil, box_office: nil, production: nil, website: nil> 

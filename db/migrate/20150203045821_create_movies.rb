@@ -3,7 +3,7 @@ class CreateMovies < ActiveRecord::Migration
     create_table :movies do |t|
       t.string :title
       t.integer :year
-      t.string :imdb_id
+      t.string :imdb_id, index: true, unique: true
       t.string :media_type
       t.date :released
       t.string :runtime
