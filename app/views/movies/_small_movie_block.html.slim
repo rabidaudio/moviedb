@@ -1,5 +1,5 @@
 .movie-block
-  -if @movie.poster||true
+  -if @movie.poster
     img.poster src= movie_poster_path(@movie)
   a href= "http://imdb.com/title/#{@movie.imdb_id}"
     h1.title = "#{@movie.title} (#{@movie.year})"
@@ -9,7 +9,7 @@
     li.country = "Country: #{@movie.country}" if @movie.country
     li.rated = "Rated: #{@movie.rated}" if @movie.rated
     li.runtime = "Runtime: #{@movie.runtime}" if @movie.runtime
-    li.
+    li.viewers = "Viewers: #{@movie.viewings.length}"
   - if @movie.plot
     h3 Plot
     p.plot = @movie.plot

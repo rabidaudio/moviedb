@@ -22,9 +22,9 @@ class Movie < ActiveRecord::Base
   end
 
   # We're using imdb_id as id, but if something Rails-y *insists* on :id, let's give it to 'em
-  def id
-    imdb_id
-  end
+  # def id
+  #   imdb_id
+  # end
 
   # overload accessors to get arrays from strings
   def genre

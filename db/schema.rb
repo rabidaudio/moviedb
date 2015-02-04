@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 20150204160233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "movies", id: false, force: :cascade do |t|
+  create_table "movies", primary_key: "imdb_id", force: :cascade do |t|
     t.string   "title"
     t.integer  "year"
-    t.string   "imdb_id"
     t.string   "media_type"
     t.date     "released"
     t.string   "runtime"
