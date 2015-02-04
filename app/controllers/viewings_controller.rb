@@ -9,8 +9,18 @@ class ViewingsController < ApplicationController
   end
 
   def create
-    @viewing = Viewing.new params[:viewing].permit(:rating, :comments, :format, :first_time)
+    @viewing = Viewing.new viewing_params
+    @viewing.movie = Movie.first #TODO
     @viewing.save!
     redirect_to @viewing
+  end
+
+
+  private
+  def viewing_params
+     params.require(:viewing).permit(:rating, :comments, :format, :first_time).tap do |v|
+      v[:rating] = v[:rating].to_i
+      v[:first_time] = v[:first_time] == "1"
+    end
   end
 end
