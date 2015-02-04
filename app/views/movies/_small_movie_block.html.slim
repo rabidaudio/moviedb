@@ -9,7 +9,8 @@
     li.country = "Country: #{@movie.country}" if @movie.country
     li.rated = "Rated: #{@movie.rated}" if @movie.rated
     li.runtime = "Runtime: #{@movie.runtime}" if @movie.runtime
-    li.viewers = "Viewers: #{@movie.viewings.length}"
+    li.viewers
+      a href=movie_viewings_path(@movie)  = "Viewers: #{@movie.viewings.length}"
   - if @movie.plot
     h3 Plot
     p.plot = @movie.plot

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :movies do 
     get 'poster' => 'movies#poster'
+    resources :viewings, shallow: true
   end
   # get 'movies/:id/poster' => 'movies#poster'
 
