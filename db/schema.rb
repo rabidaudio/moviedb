@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150204051503) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "password_digest"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150204051503) do
     t.string   "image_url"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.boolean  "user_password"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
