@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'movies/:id/poster' => 'movies#poster'
 
   resources :users
+  resources :viewings
 
   #auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]

@@ -1,0 +1,6 @@
+<%= form_for @viewing, {action: "create"} do |f| %>
+  <%= f.check_box :first_time %><br>
+  <%= f.text_area :comments %><br>
+  <%= f.text_field :format %><br>
+  <%= submit_tag 'Create' %>
+<% end %>
