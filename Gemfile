@@ -42,9 +42,11 @@ gem 'jquery-rails'
 
 gem 'omdb', git: "git://github.com/rabidaudio/omdb.git" #my version
 
+gem 'omniauth-facebook'
+
 gem 'figaro'
 
-gem 'nokogiri'
+# gem 'nokogiri'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

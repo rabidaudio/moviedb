@@ -5,27 +5,24 @@ class ApplicationController < ActionController::Base
 
   private
   def render_error error_type
-    e = Moviedb::ErrorResponse.new type: error_type, method: request.path
-    render json: e.to_json, status: e.status
+    error = Moviedb::Application.config.errors[error_type.to_s]
+    error["method"] = request.path
+    render json: {error: error}, status: error["status"]
   end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
 end
 
 
-module Moviedb
-  class ErrorResponse
 
-    def initialize opts
-      @type = Application.config.errors[opts[:type].to_s]
-      @type["method"] = opts[:method]
-    end
-
-    def status
-      @type["status"]
-    end
-
-    def to_json
-      @type.to_json
-    end
-
-  end
-end
+# <div id="user_nav">
+#   <% if current_user %>
+#     Signed in as <strong><%= current_user.name %></strong>!
+#     <%= link_to "Sign out", signout_path, id: "sign_out" %>
+#   <% else %>
+#     <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+#   <% end %>
+# </div>
