@@ -1,23 +1,9 @@
-.movie-block
+.movie-block-mini.result
   -if @movie.poster
-    .left  
+    .left
       img.poster src= movie_poster_path(@movie)
   div class=("right" if @movie.poster)
-    a href= "http://imdb.com/title/#{@movie.imdb_id}"
-      h1.title = @movie.title
-    h4 = "#{@movie.media_type.capitalize} (#{@movie.year})"
-    ul.details
-      li.language = "Language: #{@movie.language}"  if @movie.language
-      li.country  = "Country: #{@movie.country}"    if @movie.country
-      li.rated    = "Rated: #{@movie.rated}"        if @movie.rated
-      li.runtime  = "Runtime: #{@movie.runtime}"    if @movie.runtime
-      li.viewers
-        a href=movie_viewings_path(@movie)  = "Viewers: #{@movie.viewings.length}"
-    - if @movie.plot
-      h3 Plot
-      p.plot = @movie.plot
-    -if @movie.awards
-      p.awards = @movie.awards
+    h4 = "#{@movie.title} - #{@movie.media_type.capitalize} (#{@movie.year})"
 
 
 

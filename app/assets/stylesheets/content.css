@@ -3,3 +3,12 @@
   max-width: 800px;
   margin: auto;
 }
+
+.left {
+  float: left;
+  /*width: 50%;*/
+}
+.right {
+  float: right;
+  /*width: 50%;*/
+}
