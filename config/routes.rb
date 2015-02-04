@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
 
-
+  #static pages
   root 'static_pages#home'
+  get '/privacy' => 'static_pages#privacy'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

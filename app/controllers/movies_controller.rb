@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
 
   def poster
-    @movie = Movie.find params[:id]
-    if !@movie.nil? and !@movie.poster.nil?
+    @movie = Movie.find(params[:id])
+    if @movie.try(:poster)
+      puts @movie
       send_data @movie.poster, :type => 'image/png', :disposition => 'inline'
     else
-      render body: nil, status: 404 #TODO
+      render body: "404", status: 404 #TODO
     end
   end
 
@@ -14,7 +15,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find params[:id]
+    @movie = Movie.find(params[:id])
   end
 
   # BLOCKED METHODS
@@ -40,6 +41,10 @@ class MoviesController < ApplicationController
 
   def new
     render_error :FORBIDDEN
+  end
+
+  def title
+    @movie.title || super
   end
 end
 

@@ -27,9 +27,16 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+
+  # default page title. Child controllers can override this
+  def title
+    ""
+  end
+
   helper_method :current_user
   helper_method :logged_in?
   helper_method :log_in
+  helper_method :title
 end
 
 

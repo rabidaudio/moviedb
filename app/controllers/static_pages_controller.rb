@@ -1,5 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
-    render body: "TODO"
+  end
+
+  def privacy
+  end
+
+  def title
+    (params[:action] || super).capitalize
   end
 end

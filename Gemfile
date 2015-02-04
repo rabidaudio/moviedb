@@ -15,11 +15,12 @@ gem 'skeleton-rails', git: "git://github.com/phallstrom/skeleton-rails.git" #'~>
 # gem "less-rails"
 # gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+gem 'slim-rails'
+gem 'markdown-rails'
+gem 'redcarpet'
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-
-
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

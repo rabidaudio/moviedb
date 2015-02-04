@@ -5,8 +5,9 @@ class Movie < ActiveRecord::Base
     movie = find_by imdb_id: imdb_id
     if movie.nil? # If it isn't in the database already, make one from OMDB
       movie = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
+      movie.save!
     end
-    movie.save!
+    movie
   end
 
   def poster
