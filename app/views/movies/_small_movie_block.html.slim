@@ -1,3 +1,5 @@
+-if @movie.poster
+  img.poster src= url_for(controller: 'movies', action: 'poster', id: @movie.imdb_id)
 h1.title = @movie.title
 - if @movie.plot
   p.plot = @movie.plot

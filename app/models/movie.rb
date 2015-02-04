@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
 
+  has_many :viewings
+
   # overload find with imdb_id
   def self.find imdb_id
     movie = find_by imdb_id: imdb_id
@@ -12,13 +14,12 @@ class Movie < ActiveRecord::Base
 
   def poster
     if self[:poster].nil?
-      #todo handle "Error: API Key Not Valid!"
       key = Moviedb::Application.config.OMDB_KEY
-      self[:poster] = Net::HTTP.get URI("http://img.omdbapi.com/?apikey=#{key}&i=#{imdb_id}")
+      response = Net::HTTP.get_response URI("http://img.omdbapi.com/?apikey=#{key}&i=#{imdb_id}")
+      self[:poster] = response.body unless response.body == "Error: API Key Not Valid!"
     end
     self[:poster]
   end
-
 
   # overload accessors to get arrays from strings
   def genre
@@ -53,11 +54,8 @@ class Movie < ActiveRecord::Base
 
     # other subsitutions:
     h.each do |key, val|
-      if val == "N/A"
-        h[key] = nil
-      elsif key.in? [:released]
-        h[key] = Date.parse(val) #convert to date
-      end
+      h[key] = nil if val == "N/A"
+      h[key] = Date.parse(val) if key.in? [:released] #convert to date
     end
   end
 end

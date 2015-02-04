@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   # include ActiveUUID::UUID
   # natural_key :email, :created_at
 
+  has_many :viewings
+
   has_secure_password
 
   # TODO similar method for movie

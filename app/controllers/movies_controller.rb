@@ -3,10 +3,9 @@ class MoviesController < ApplicationController
   def poster
     @movie = Movie.find(params[:id])
     if @movie.try(:poster)
-      puts @movie
-      send_data @movie.poster, :type => 'image/png', :disposition => 'inline'
+      send_data @movie.poster, :type => 'image/jpeg', :disposition => 'inline'
     else
-      render body: "404", status: 404 #TODO
+      render status: :not_found
     end
   end
 

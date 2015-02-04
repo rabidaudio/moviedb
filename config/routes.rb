@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get 'search' => 'movies#search'
 
   resources :movies do 
-    get 'poster' => 'movies#poster'
+    # get 'poster' => 'movies#poster'
   end
+  get 'movies/:id/poster' => 'movies#poster'
 
   resources :users
 
