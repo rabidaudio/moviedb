@@ -1,7 +1,10 @@
-<%= form_for @viewing, {action: "create"} do |f| %>
-  <%= f.check_box :first_time %><br>
-  <%= f.text_area :comments %><br>
-  <%= f.text_field :format %><br>
-  <%= f.text_field :rating %><br>
-  <%= submit_tag 'Create' %>
+
+<%= form_for @viewing, url: user_viewings_path(@user, @viewing) do |f| %>
+  <%= f.hidden_field :movie %>
+  <input type="text" id="movie_search" placeholder="What are you watching?" class="u-full-width"><br/>
+  <%= f.text_field :format, placeholder: "How are you watching it?" %><br/>
+  <%= f.check_box :first_time %>Seen it before?<br/>
+  Thoughts<br/>
+  <%= f.text_area :comments, placeholder: "Markdown-enabled"  %><br/>
+  <%= submit_tag 'Create', class: "button-primary" %>
 <% end %>

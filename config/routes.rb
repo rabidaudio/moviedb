@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'search' => 'movies#search'
 
   resources :movies do 
-    get 'poster' => 'movies#poster'
-    resources :viewings, shallow: true
+    collection do
+      get 'poster' => 'movies#poster'
+      get 'search' => 'movies#search'
+    end
   end
 
   resources :users do
     resources :viewings, shallow: true
   end
+  resources :viewings
 
   #auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]
