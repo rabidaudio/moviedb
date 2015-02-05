@@ -16,8 +16,10 @@
   *** Bower Assets ***
  *= require skeleton-css/css/normalize
  *= require skeleton-css/css/skeleton
-
-
-  *** Custom Assets ***
-  *= require viewings_new
  */
+
+.content {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+}

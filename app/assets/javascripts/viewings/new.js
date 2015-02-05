@@ -12,9 +12,15 @@ $(document).ready(function(){
       $('#viewing_movie').val(data.movie.imdb_id);
       $('#movie_search').val(data.movie.title);
     },
-    formatNoResults: function(q){ return "No results found."; },
-    onRequestBefore: function(){},
-    onRequestAfter: function(){},
+    formatNoResults: function(q){
+      return "No results found.";
+    },
+    onRequestBefore: function(){
+      $("#loading").show();
+    },
+    onRequestAfter: function(){
+      $("#loading").hide();
+    },
     formatMinChars: function(){} //no-op
   });
 });

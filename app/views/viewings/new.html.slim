@@ -1,1 +1,16 @@
-= render "new_form"
+= form_for @viewing, url: user_viewings_path(@user, @viewing) do |f|
+  div.field
+    = f.hidden_field :movie_id
+    = f.text_field :movie_name, placeholder: "What are you watching?", class: "u-full-width"
+  div.field
+    = f.text_field :format, placeholder: "How are you watching it?", class: "u-full-width"
+  div.field
+    = f.check_box :first_time
+    span &nbsp;I've seen this before
+    br
+  div.field
+    span Thoughts
+    br
+    = f.text_area :comments, placeholder: "Markdown-enabled", class: "u-full-width"
+  div.actions
+    = submit_tag 'Create', class: "button-primary", class: ["button-primary"]
