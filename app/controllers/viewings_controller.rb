@@ -6,11 +6,12 @@ class ViewingsController < ApplicationController
 
   def new
     @viewing = Viewing.new
+    @user = User.find params[:user_id] if params[:user_id]
   end
 
   def create
     @viewing = Viewing.new viewing_params
-    @viewing.movie = Movie.first #TODO
+    @viewing.movie = Movie.find params[:movie]
     @viewing.save!
     redirect_to @viewing
   end
@@ -25,8 +26,6 @@ class ViewingsController < ApplicationController
     else
       @viewings = Viewings.all
     end
-
-    @viewings  =   if params[:user_id]
   end
 
 

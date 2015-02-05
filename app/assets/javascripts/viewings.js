@@ -6,11 +6,11 @@ $(document).ready(function(){
     minChars: 3,
     required: true,
     formatItem: function (data) {
-      return Handlebars.Templates['viewings/new'](data);
+      return data.html;
     },
     onSelect: function (data) {
-      $('#viewing_movie').val(data.imdb_id);
-      $('#movie_search').val(data.title);
+      $('#viewing_movie').val(data.movie.imdb_id);
+      $('#movie_search').val(data.movie.title);
     },
     formatNoResults: function(q){ return "No results found."; },
     onRequestBefore: function(){},

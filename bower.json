@@ -9,7 +9,8 @@
     "dependencies": {
       "jquery": "1.10.2",
       "jquery-ujs": "*",
-      "skeleton-css": "*"
+      "skeleton-css": "*",
+      "jquery-marcopolo": "1.8.1"
     }
   }
 }

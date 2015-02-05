@@ -1,9 +1,9 @@
 .movie-block-mini.result
-  -if @movie.poster
+  -if movie.poster
     .left
-      img.poster src= movie_poster_path(@movie)
-  div class=("right" if @movie.poster)
-    h4 = "#{@movie.title} - #{@movie.media_type.capitalize} (#{@movie.year})"
+      img.poster src= movie_poster_path(movie)
+  div class=("right" if movie.poster)
+    h4 = "#{movie.title} - #{movie.type.capitalize} (#{movie.year})"
 
 
 

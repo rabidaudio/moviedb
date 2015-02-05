@@ -10,7 +10,11 @@ class MoviesController < ApplicationController
   end
 
   def search
-    render json: Omdb::Api.new.search(params[:q])[:movies]
+    results = []
+    Omdb::Api.new.search(params[:q])[:movies].each do |m|
+      results.push({:movie => m, :html => render_to_string({partial: 'mini_movie_block', layout: false, locals: {movie: m}})})
+    end
+    render json: results
   end
 
   def show
