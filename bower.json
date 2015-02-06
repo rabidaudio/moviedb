@@ -10,7 +10,9 @@
       "jquery": "1.10.2",
       "jquery-ujs": "*",
       "skeleton-css": "*",
-      "jquery-marcopolo": "1.8.1"
+      "jquery-marcopolo": "1.8.1",
+      "fontawesome": "*",
+      "way.js": "*"
     }
   }
 }

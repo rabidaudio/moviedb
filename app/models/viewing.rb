@@ -2,6 +2,13 @@ class Viewing < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user
 
+  #All possible values for rating
+  def self.rating_range
+    (1..5).to_a 
+  end
+
+  validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }
+
   # required for fucking form helper
   def movie_name
     movie.try(:name)

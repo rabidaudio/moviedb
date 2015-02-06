@@ -10,9 +10,8 @@ gem 'therubyracer', platforms: :ruby
 # Assets
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
-
-# gem 'skeleton-rails', git: "git://github.com/phallstrom/skeleton-rails.git" #'~> 0.1.0'
 # gem "less-rails"
+# gem 'skeleton-rails', git: "git://github.com/phallstrom/skeleton-rails.git" #'~> 0.1.0'
 # gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # slim html templates

@@ -1,18 +1,30 @@
+= stylesheet_link_tag 'rating'
+h1 Add another viewing
 = form_for @viewing, url: user_viewings_path(@user, @viewing) do |f|
   div.field
+    span Name
+    br
     = f.hidden_field :movie_id
     = f.text_field :movie_name, placeholder: "What are you watching?", class: "u-full-width"
+
   div.field
-    = f.text_field :format, placeholder: "How are you watching it?", class: "u-full-width"
-  div.field
-    = f.check_box :first_time
-    span &nbsp;I've seen this before
+    span Source
     br
+    = f.text_field :format, placeholder: "Where are you watching it? (e.g. Netflix, Midtown Arts Cinema, etc.)", class: "u-full-width"
   div.field
     span Thoughts
     br
     = f.text_area :comments, placeholder: "Markdown-enabled", class: "u-full-width"
     br
-    = select_tag :rating, options_for_select((1..5).to_a)
+    span Rating
+    br
+    = select_tag :rating, options_for_select(Viewing.rating_range)
+    / Becomes shown with javascript. Above is the javascript-free version\
+    span.rating.hidden
+      - Viewing.rating_range.each
+        span.star
+    br
+    = f.check_box :first_time
+    span &nbsp;I've seen this before
   div.actions
     = submit_tag 'Create', class: "button-primary", class: ["button-primary"]
