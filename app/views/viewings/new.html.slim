@@ -24,7 +24,6 @@ h1 Add another viewing
         =  r = Viewing.rating_range.length - i
         = radio_button_tag "rating", r.to_s.to_sym, false, star: "#{r}"
         = label_tag "rating_#{r}", "", class: "star"
-            /span.star star="#{r}"
     br
     = f.check_box :first_time
     span &nbsp;I've seen this before
