@@ -16,12 +16,11 @@
   *** Bower Assets ***
  *= require skeleton-css/css/normalize
  *= require skeleton-css/css/skeleton
- *= require fontawesome/scss/font-awesome
  */
-$fa-font-path: "fonts/";
 
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 
 
 @import 'colors';
