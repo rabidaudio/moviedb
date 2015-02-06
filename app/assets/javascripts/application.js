@@ -15,6 +15,7 @@
 /* Bower Deps */
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
+//= require handlebars/handlebars.runtime
 
-
+//= require_tree ./templates
 //= require_tree .

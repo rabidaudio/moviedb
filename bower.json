@@ -12,7 +12,8 @@
       "skeleton-css": "*",
       "jquery-marcopolo": "1.8.1",
       "fontawesome": "*",
-      "way.js": "*"
+      "way.js": "*",
+      "handlebars": "*"
     }
   }
 }

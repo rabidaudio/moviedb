@@ -1,11 +1,12 @@
 // Live search
 //= require jquery-marcopolo/build/jquery.marcopolo
 // Sexy data binding
-//= require way.js/way.js
+//= require way.js/way.min
+
 
 $(document).ready(function(){
 
-  $('#movie_search').marcoPolo({
+  $('#viewing_movie_name').marcoPolo({
     url: '/movies/search',
     minChars: 3,
     required: true,

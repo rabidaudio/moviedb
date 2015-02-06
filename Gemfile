@@ -20,6 +20,9 @@ gem 'slim-rails'
 # add markdown files to asset pipeline
 gem 'markdown-rails'
 
+# Add handlebars templates to the pipeline
+gem 'handlebars_assets'
+
 #markdown parser
 gem 'redcarpet'
 

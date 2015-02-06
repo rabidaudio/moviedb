@@ -87,6 +87,11 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.8)
       multi_json (~> 1.8)
+    handlebars_assets (0.18)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hashie (3.4.0)
     hike (1.2.3)
     hitimes (1.2.2)
@@ -244,6 +249,7 @@ DEPENDENCIES
   execjs
   figaro
   guard-livereload
+  handlebars_assets
   markdown-rails
   omdb!
   omniauth-facebook
