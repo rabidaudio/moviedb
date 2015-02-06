@@ -1,6 +1,7 @@
 /* http://fontawesome.io/examples/ */
 
 /*@color = */
+ @import 'colors';
 
 .rating {
   unicode-bidi: bidi-override;
@@ -24,5 +25,6 @@
 .rating span.star:hover:before,
 .rating span.star:hover ~ span.star:before {
   content: "\f005";
-  color: #e3cf7a;
+  /*color: #e3cf7a;*/
+  color:  $star-color;
 }

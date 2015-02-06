@@ -19,6 +19,8 @@
  *= require fontawesome/scss/font-awesome.scss
  */
 
+ @import 'colors';
+
 .content {
   margin: auto;
   background-color: #ffffff;
@@ -44,3 +46,15 @@ body {
 .right {
   float: right;
 }
+
+form {
+  .required:after {
+    content: " *";
+    color: red;
+  }
+}
+
+// .button-primary {
+//   background-color: $primary-color;
+//   border-color: $primary-color;
+// }

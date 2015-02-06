@@ -1,12 +1,11 @@
 = stylesheet_link_tag 'rating'
 h1 Add another viewing
-= form_for @viewing, url: user_viewings_path(@user, @viewing) do |f|
+= form_for @viewing, url: user_viewings_path(@user, @viewing), html: { "way-data" => "new-viewing", "way-persistent" => true } do |f|
   div.field
-    span Name
+    span.required Name
     br
     = f.hidden_field :movie_id
     = f.text_field :movie_name, placeholder: "What are you watching?", class: "u-full-width"
-
   div.field
     span Source
     br
