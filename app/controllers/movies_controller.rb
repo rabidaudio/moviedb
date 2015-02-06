@@ -9,8 +9,11 @@ class MoviesController < ApplicationController
     end
   end
 
+  # Proxy the search query to OMDB, grabbing from memcache if possible
   def search
-    render json: Omdb::Api.new.search(params[:q])[:movies]
+    render json: (Rails.cache.fetch(request.fullpath, expires_in: 7.days) do
+      Omdb::Api.new.search(params[:q])[:movies]
+    end)
   end
 
   def show

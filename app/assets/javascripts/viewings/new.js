@@ -10,6 +10,7 @@ $(document).ready(function(){
     url: '/movies/search',
     minChars: 3,
     required: true,
+    // delay: 500,
     formatItem: function (data) {
       return HandlebarsTemplates ? HandlebarsTemplates['mini_movie'](data) : data.title;
     },
