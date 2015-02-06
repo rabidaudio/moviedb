@@ -16,6 +16,9 @@ gem 'sass-rails', '~> 5.0'
 # gem 'skeleton-rails', git: "git://github.com/phallstrom/skeleton-rails.git" #'~> 0.1.0'
 # gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+# doing FontAwesome here instead of through bower because of some asset issue
+# gem 'font-awesome-sass'
+
 # slim html templates
 gem 'slim-rails'
 

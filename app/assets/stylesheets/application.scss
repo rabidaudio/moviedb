@@ -16,10 +16,15 @@
   *** Bower Assets ***
  *= require skeleton-css/css/normalize
  *= require skeleton-css/css/skeleton
- *= require fontawesome/scss/font-awesome.scss
+ *= require fontawesome/scss/font-awesome
  */
+$fa-font-path: "fonts/";
 
- @import 'colors';
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
+
+
+@import 'colors';
 
 .content {
   margin: auto;

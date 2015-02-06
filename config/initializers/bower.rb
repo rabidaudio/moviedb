@@ -31,3 +31,6 @@ Rails.application.config.assets.precompile.push(Proc.new do |path|
     '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
   ]
 end)
+
+
+# TODO: include all my js+css in app/assets, and search through them, including all referenced files too
