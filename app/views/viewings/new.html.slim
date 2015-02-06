@@ -16,12 +16,9 @@ h1 Add another viewing
     br
     = f.text_area :comments, placeholder: "Markdown-enabled", class: ["u-full-width", "sizable"]
     br
-    span Rating
-    br
-    = select_tag :rating, options_for_select(Viewing.rating_range)
-    / Becomes shown with javascript. Above is the javascript-free version
-    / input.rating type="radio"
     span.rating
+      span Rating
+      br
       - Viewing.rating_range.each_index do |i|
         /These go backwards
         =  r = Viewing.rating_range.length - i
