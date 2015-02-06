@@ -1,7 +1,7 @@
 // Live search
 //= require jquery-marcopolo/build/jquery.marcopolo
 // Sexy data binding
-//= require way.js/way.min
+//= require way.js/way
 
 
 $(document).ready(function(){
