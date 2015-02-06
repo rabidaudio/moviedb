@@ -1,7 +1,7 @@
 // Live search
 //= require jquery-marcopolo/build/jquery.marcopolo
 // Sexy data binding
-//= require way.js/way
+//******  require way.js/way
 
 
 $(document).ready(function(){
@@ -35,10 +35,10 @@ $(document).ready(function(){
 
   $('#viewing_comments')
     .focus(function(e){
-      $(this).attr('height', 10);
+      $(this).attr('rows', "10");
     })
     .blur(function(e){
-      if($(this).val().length < 1) $(this).attr('height', 1);
+      if($(this).val().length < 1) $(this).attr('rows', "1");
     });
 
 });
