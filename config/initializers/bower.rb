@@ -3,6 +3,8 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'bo
 # We don't want the default of everything that isn't js or css, because it pulls too many things in
 # Rails.application.config.assets.precompile.shift
 
+#https://coderwall.com/p/6bmygq/heroku-rails-bower
+
 Rails.application.config.assets.precompile << Proc.new do |path|
   if path =~ /\.(css|js)\z/
     if path.in? ["way.js/demo.js"]

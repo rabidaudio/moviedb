@@ -4,3 +4,13 @@ ol.mp_list {
 textarea.sizable {
   height: auto;
 }
+
+.search-container {
+  position: relative;
+}
+
+#loading {
+  position: absolute;
+  line-height: 36px;
+  right: 12px;
+}

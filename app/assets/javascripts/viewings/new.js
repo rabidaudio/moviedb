@@ -16,7 +16,7 @@ $(document).ready(function(){
     },
     onSelect: function (data) {
       $('#viewing_movie').val(data.imdb_id);
-      $('#movie_search').val(data.title);
+      $('#viewing_movie_name').val(data.title+" ("+data.year+")");
     },
     formatNoResults: function(q){
       return "No results found.";
