@@ -4,16 +4,13 @@
   "homepage": "https://github.com/rabidaudio/moviedb",
   "license": "MIT",
   "private": true,
-  "vendor": {
-    "name": "bower-rails generated vendor assets",
-    "dependencies": {
-      "jquery": "1.10.2",
-      "jquery-ujs": "*",
-      "skeleton-css": "*",
-      "jquery-marcopolo": "1.8.1",
-      "fontawesome": "*",
-      "way.js": "*",
-      "handlebars": "*"
-    }
+  "dependencies": {
+    "jquery": "1.10.2",
+    "jquery-ujs": "*",
+    "skeleton-css": "*",
+    "jquery-marcopolo": "1.8.1",
+    "fontawesome": "*",
+    "way.js": "*",
+    "handlebars": "*"
   }
 }

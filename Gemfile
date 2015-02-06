@@ -31,8 +31,6 @@ gem 'redcarpet'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'jquery-rails'
 
-gem 'bower-rails'
-
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
