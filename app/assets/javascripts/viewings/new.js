@@ -11,11 +11,11 @@ $(document).ready(function(){
     minChars: 3,
     required: true,
     formatItem: function (data) {
-      return data.html;
+      return HandlebarsTemplates ? HandlebarsTemplates['mini_movie'](data) : data.title;
     },
     onSelect: function (data) {
-      $('#viewing_movie').val(data.movie.imdb_id);
-      $('#movie_search').val(data.movie.title);
+      $('#viewing_movie').val(data.imdb_id);
+      $('#movie_search').val(data.title);
     },
     formatNoResults: function(q){
       return "No results found.";
