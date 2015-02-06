@@ -11,22 +11,3 @@ Rails.application.config.assets.version = '1.0'
 
 # Rails.application.config.assets.precompile = ['*.js', '*.css']
 # http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
-Rails.application.config.assets.precompile << Proc.new do |path|
-  if path =~ /\.(css|js)\z/
-    if path.in? ["way.js/demo.js"]
-      puts "mow"
-      false
-    else
-      full_path = Rails.application.assets.resolve(path).to_path
-      app_assets_path = Rails.root.join('app', 'assets').to_path
-      if full_path.starts_with? app_assets_path
-        puts ">>>>"+full_path
-        true
-      else
-        puts "skipping "+full_path
-      end
-    end
-  else
-    false
-  end
-end
