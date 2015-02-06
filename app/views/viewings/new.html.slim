@@ -20,9 +20,14 @@ h1 Add another viewing
     br
     = select_tag :rating, options_for_select(Viewing.rating_range)
     / Becomes shown with javascript. Above is the javascript-free version
-    span.rating.hidden
-      - Viewing.rating_range.each
-        span.star
+    / input.rating type="radio"
+    span.rating
+      - Viewing.rating_range.each_index do |i|
+        /These go backwards
+        =  r = Viewing.rating_range.length - i
+        = radio_button_tag "rating", r.to_s.to_sym, false, star: "#{r}"
+        = label_tag "rating_#{r}", "", class: "star"
+            /span.star star="#{r}"
     br
     = f.check_box :first_time
     span &nbsp;I've seen this before

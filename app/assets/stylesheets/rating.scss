@@ -6,24 +6,34 @@
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
-  font-size: 30px;
+  font-size: inherit;
+  label {
+    display: inline-block;
+  }
+  font-size: 0px;
+  input {
+    display: none;
+  }
 }
-.rating span.star {
+.rating label.star {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
+  font-size: 30px;
 }
-.rating span.star:hover {
+
+.rating label.star:hover {
   cursor: pointer;
 }
-.rating span.star:before {
+
+.rating label.star:before {
   content: "\f006";
   padding-right: 5px;
   color: #777777;
 }
-.rating span.star:hover:before,
-.rating span.star:hover ~ span.star:before {
+.rating label.star:hover:before,
+.rating label.star:hover ~ label.star:before {
   content: "\f005";
   /*color: #e3cf7a;*/
   color:  $star-color;

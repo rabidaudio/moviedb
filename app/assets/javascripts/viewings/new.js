@@ -41,5 +41,8 @@ $(document).ready(function(){
     .blur(function(e){
       if($(this).val().length < 1) $(this).attr('rows', "1");
     });
-
+  // $(".star").click(function(){
+  //   $('#rating').val($(this).attr("star"));
+  //   $(this).attr('class', 'hover');
+  // });
 });
