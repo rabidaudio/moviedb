@@ -12,6 +12,15 @@ class Movie < ActiveRecord::Base
     movie
   end
 
+  def self.find_by_title name 
+    movie = find_by title: name
+    if movie.nil?
+      movie = new omdb_to_hash(Omdb::Api.new.search(name)[:movie])
+      movie.save!
+    end
+    movie
+  end
+
   def poster
     if self[:poster].nil?
       key = Moviedb::Application.config.OMDB_KEY

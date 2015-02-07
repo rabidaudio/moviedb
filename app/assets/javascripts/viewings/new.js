@@ -1,11 +1,9 @@
 // Live search
 //= require jquery-marcopolo/build/jquery.marcopolo
-// Sexy data binding
-//******  require way.js/way
-
 
 $(document).ready(function(){
 
+  //live search
   $('#viewing_movie_name').marcoPolo({
     url: '/movies/search',
     minChars: 3,
@@ -15,7 +13,7 @@ $(document).ready(function(){
       return HandlebarsTemplates ? HandlebarsTemplates['mini_movie'](data) : data.title;
     },
     onSelect: function (data) {
-      $('#viewing_movie').val(data.imdb_id);
+      $('#viewing_movie_id').val(data.imdb_id);
       $('#viewing_movie_name').val(data.title+" ("+data.year+")");
     },
     formatNoResults: function(q){
@@ -34,6 +32,7 @@ $(document).ready(function(){
   $('#rating').hide();
   $('.rating').show();
 
+  // expanding comments block
   $('#viewing_comments')
     .focus(function(e){
       $(this).attr('rows', "10");
@@ -41,8 +40,4 @@ $(document).ready(function(){
     .blur(function(e){
       if($(this).val().length < 1) $(this).attr('rows', "1");
     });
-  // $(".star").click(function(){
-  //   $('#rating').val($(this).attr("star"));
-  //   $(this).attr('class', 'hover');
-  // });
 });
