@@ -1,7 +1,9 @@
 class ViewingsController < ApplicationController
   def show
-    # @user = User.find(params[:user_id]) || current_user
     @viewing = Viewing.find(params[:id])
+    byebug
+    @user =  @viewing.user
+    @movie = @viewing.movie
   end
 
   def new
@@ -42,7 +44,6 @@ class ViewingsController < ApplicationController
   private
   # convert form data to usable params
   def viewing_params
-      byebug
       params.require(:viewing).permit(:rating, :comments, :format, :first_time).tap do |v|
       v[:rating] = v[:rating].to_i
       v[:first_time] = v[:first_time] == "1"

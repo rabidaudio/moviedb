@@ -7,9 +7,9 @@ class Viewing < ActiveRecord::Base
     (1..5).to_a 
   end
 
-  validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }
+  validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }, allow_nil: true
 
-  # required for fucking form helper
+  # required for form helper
   def movie_name
     movie.try(:name)
   end
