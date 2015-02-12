@@ -1,9 +1,10 @@
 .movie-block
   -if @movie.poster
     .left  
-      img.poster src= movie_poster_path(@movie)
+      img.poster src= movie_path(@movie)+"/poster"
+      /movie_poster_path(@movie)
   div class=("right" if @movie.poster)
-    a href= "http://imdb.com/title/#{@movie.imdb_id}"
+    a href= "http://imdb.com/title/#{@movie.id}"
       h1.title = @movie.title
     h4 = "#{@movie.media_type.capitalize} (#{@movie.year})"
     ul.details
@@ -12,7 +13,8 @@
       li.rated    = "Rated: #{@movie.rated}"        if @movie.rated
       li.runtime  = "Runtime: #{@movie.runtime}"    if @movie.runtime
       li.viewers
-        a href=movie_viewings_path(@movie)  = "Viewers: #{@movie.viewings.length}"
+        a href= "#"
+        /movie_viewings_path(@movie)  = "Viewers: #{@movie.viewings.length}"
     - if @movie.plot
       h3 Plot
       p.plot = @movie.plot

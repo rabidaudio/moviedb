@@ -5,6 +5,8 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 
 gem 'pg', '~> 0.18.1'
+# gem 'activerecord', '4.2.0'
+# gem 'pg', '0.18.0.pre20141117110243'
 
 gem 'execjs'
 gem 'therubyracer', platforms: :ruby

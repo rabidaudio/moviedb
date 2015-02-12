@@ -4,7 +4,7 @@ class Movie < ActiveRecord::Base
 
   # overload find with imdb_id
   def self.find imdb_id
-    movie = find_by imdb_id: imdb_id
+    movie = super imdb_id
     if movie.nil? # If it isn't in the database already, make one from OMDB
       movie = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
       movie.save!
@@ -21,13 +21,15 @@ class Movie < ActiveRecord::Base
     movie
   end
 
-  def poster
+  def poster(size=nil)
     if self[:poster].nil?
       key = Moviedb::Application.config.OMDB_KEY
-      response = Net::HTTP.get_response URI("http://img.omdbapi.com/?apikey=#{key}&i=#{imdb_id}")
-      self[:poster] = response.body unless response.body == "Error: API Key Not Valid!"
+      url = "http://img.omdbapi.com/?apikey=#{key}&i=#{id}"
+      url += "&h=#{size}" unless size.nil?
+      response = Net::HTTP.get_response URI(url)
+      self[:poster] = Base64.encode64(response.body) unless response.body == "Error: API Key Not Valid!"
     end
-    self[:poster]
+    Base64.decode64(self[:poster])
   end
 
   # We're using imdb_id as id, but if something Rails-y *insists* on :id, let's give it to 'em

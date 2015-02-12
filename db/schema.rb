@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204160233) do
+ActiveRecord::Schema.define(version: 20150212185838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "movies", primary_key: "imdb_id", force: :cascade do |t|
+  create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.integer  "year"
     t.string   "media_type"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150204160233) do
     t.string   "website"
   end
 
-  add_index "movies", ["imdb_id"], name: "index_movies_on_imdb_id", using: :btree
+  add_index "movies", ["id"], name: "index_movies_on_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "password_digest"
