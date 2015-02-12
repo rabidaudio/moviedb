@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212185838) do
+ActiveRecord::Schema.define(version: 20150212220237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150212185838) do
     t.string   "writer"
     t.string   "actors"
     t.string   "plot"
-    t.binary   "poster"
     t.string   "metascore"
     t.string   "language"
     t.string   "country"
@@ -53,6 +52,18 @@ ActiveRecord::Schema.define(version: 20150212185838) do
   end
 
   add_index "movies", ["id"], name: "index_movies_on_id", using: :btree
+
+  create_table "posters", force: :cascade do |t|
+    t.binary   "data"
+    t.integer  "size"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "movie_id"
+    t.string   "content_type"
+  end
+
+  add_index "posters", ["movie_id"], name: "index_posters_on_movie_id", using: :btree
+  add_index "posters", ["size"], name: "index_posters_on_size", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "password_digest"

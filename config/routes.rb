@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :movies do 
     get 'poster' => 'movies#poster'
+    resources :viewings, shallow: true
     collection do
       get 'search' => 'movies#search'
     end

@@ -2,10 +2,11 @@ class MoviesController < ApplicationController
 
   def poster
     @movie = Movie.find(params[:movie_id])
-    if @movie.try(:poster)
-      send_data @movie.poster, :type => 'image/jpeg', :disposition => 'inline'
+    poster = @movie.poster(params[:size])
+    if poster.data
+      send_data poster.data, :type => poster.content_type, :disposition => 'inline'
     else
-      render status: :not_found
+      render body: "", status: :not_found
     end
   end
 

@@ -1,6 +1,7 @@
 class Movie < ActiveRecord::Base
 
   has_many :viewings
+  has_many :posters
 
   # overload find with imdb_id
   def self.find imdb_id
@@ -22,20 +23,14 @@ class Movie < ActiveRecord::Base
   end
 
   def poster(size=nil)
-    if self[:poster].nil?
-      key = Moviedb::Application.config.OMDB_KEY
-      url = "http://img.omdbapi.com/?apikey=#{key}&i=#{id}"
-      url += "&h=#{size}" unless size.nil?
-      response = Net::HTTP.get_response URI(url)
-      self[:poster] = response.body unless response.body == "Error: API Key Not Valid!"
+    if size.nil? and posters.length
+      #fetch the largest existing one, or the default if none exist
+      posters.order(size: :desc).first
+    else
+      #fetch the size requested
+      Poster.fetch self, (size||300)
     end
-    self[:poster]
   end
-
-  # We're using imdb_id as id, but if something Rails-y *insists* on :id, let's give it to 'em
-  # def id
-  #   imdb_id
-  # end
 
   # overload accessors to get arrays from strings
   def genre
