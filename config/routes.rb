@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
 
   resources :movies do 
+    get 'poster' => 'movies#poster'
     collection do
-      get 'poster' => 'movies#poster'
       get 'search' => 'movies#search'
     end
   end

@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def poster
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:movie_id])
     if @movie.try(:poster)
       send_data @movie.poster, :type => 'image/jpeg', :disposition => 'inline'
     else
