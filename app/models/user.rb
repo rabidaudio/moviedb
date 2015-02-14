@@ -29,6 +29,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def short_name
+    if firstname
+      firstname
+    else
+      name.split(" ").first 
+    end
+  end
+
   def image_url
     if super.nil? and not email.nil?
       "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=200"
