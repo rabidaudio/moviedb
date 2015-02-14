@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
 
+  if Rails.env.development? 
+    match 'auth/development', to: 'sessions#create_dev', via: [:get]
+  end
+
   #static pages
   root 'static_pages#home'
   get '/privacy' => 'static_pages#privacy'

@@ -3,7 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  private
+  helper_method :current_user
+  helper_method :logged_in?
+  helper_method :log_in
+  helper_method :title
+
+  
   def render_error error_type
     error = Moviedb::Application.config.errors[error_type.to_s]
     error["method"] = request.path
@@ -32,11 +37,6 @@ class ApplicationController < ActionController::Base
   def title
     ""
   end
-
-  helper_method :current_user
-  helper_method :logged_in?
-  helper_method :log_in
-  helper_method :title
 end
 
 
