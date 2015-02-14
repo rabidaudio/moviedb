@@ -29,6 +29,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def image_url
+    if super.nil? and not email.nil?
+      "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}?s=200"
+    else
+      super
+    end
+  end
+
   #can't set an attribute with a question mark, so we make a helper accessor for it
   def user_password?
     user_password
