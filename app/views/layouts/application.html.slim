@@ -5,6 +5,8 @@ html
     == stylesheet_link_tag 'application', media: 'all'
     == csrf_meta_tags
   body
+    .header
+      = render 'login_logout'
     .content
       == yield
 
