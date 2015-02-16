@@ -21,31 +21,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  # # BLOCKED METHODS
-  # def index
-  #   render_error :FORBIDDEN
-  # end
-
-  # def create
-  #   render_error :FORBIDDEN
-  # end
-
-  # def edit
-  #   render_error :FORBIDDEN
-  # end
-
-  # def update
-  #   render_error :FORBIDDEN
-  # end
-
-  # def destroy
-  #   render_error :FORBIDDEN
-  # end
-
-  # def new
-  #   render_error :FORBIDDEN
-  # end
-
   def title
     @movie.title || super
   end
