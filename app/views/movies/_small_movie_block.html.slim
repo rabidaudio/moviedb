@@ -1,8 +1,7 @@
 .movie-block
   -if @movie.poster
-    .left  
       img.poster src= movie_poster_path(@movie)
-  div class=("right" if @movie.poster)
+  div
     a href= "http://imdb.com/title/#{@movie.id}"
       h1.title = @movie.title
     h4 = "#{@movie.media_type.capitalize} (#{@movie.year})"

@@ -3,27 +3,22 @@ class Movie < ActiveRecord::Base
   has_many :viewings
   has_many :posters
 
-  # overload find with imdb_id
+  # overload find
   def self.find imdb_id
-    movie = find_by id: imdb_id #super imdb_id
-    if movie.nil? # If it isn't in the database already, make one from OMDB
-      movie = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
-      movie.save!
+    # If it isn't in the database already, make one from OMDB
+    where(id: imdb_id).first_or_create do |m|
+      m = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
     end
-    movie
   end
 
-  def self.find_by_title name 
-    movie = find_by title: name
-    if movie.nil?
-      movie = new omdb_to_hash(Omdb::Api.new.search(name)[:movie])
-      movie.save!
+  def self.find_by_title search
+    where(search).first_or_create do |m|
+      m = Movie.new omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
     end
-    movie
   end
 
   def poster(size=nil)
-    if size.nil? and posters.length
+    if size.nil? and posters.length>0
       #fetch the largest existing one, or the default if none exist
       posters.order(size: :desc).first
     else
@@ -64,8 +59,6 @@ class Movie < ActiveRecord::Base
     # replace imdb_id with id
     h[:id] = h[:imdb_id]
     h.delete :imdb_id
-    # separate requests for blobs
-    h.delete :poster
 
     # other subsitutions:
     h.each do |key, val|

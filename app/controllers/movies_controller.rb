@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def poster
     @movie = Movie.find(params[:movie_id])
     poster = @movie.poster(params[:size])
-    if poster.data
+    if poster.try(:data)
       send_data poster.data, :type => poster.content_type, :disposition => 'inline'
     else
       render body: "", status: :not_found
@@ -21,30 +21,30 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  # BLOCKED METHODS
-  def index
-    render_error :FORBIDDEN
-  end
+  # # BLOCKED METHODS
+  # def index
+  #   render_error :FORBIDDEN
+  # end
 
-  def create
-    render_error :FORBIDDEN
-  end
+  # def create
+  #   render_error :FORBIDDEN
+  # end
 
-  def edit
-    render_error :FORBIDDEN
-  end
+  # def edit
+  #   render_error :FORBIDDEN
+  # end
 
-  def update
-    render_error :FORBIDDEN
-  end
+  # def update
+  #   render_error :FORBIDDEN
+  # end
 
-  def destroy
-    render_error :FORBIDDEN
-  end
+  # def destroy
+  #   render_error :FORBIDDEN
+  # end
 
-  def new
-    render_error :FORBIDDEN
-  end
+  # def new
+  #   render_error :FORBIDDEN
+  # end
 
   def title
     @movie.title || super
