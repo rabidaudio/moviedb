@@ -3,67 +3,41 @@ class Movie < ActiveRecord::Base
   has_many :viewings
   has_many :posters
 
-  # overload find
+  # overload find: if it isn't in the database already, make one from OMDB
   def self.find imdb_id
-    # If it isn't in the database already, make one from OMDB
-    where(id: imdb_id).first_or_create do |m|
-      m = new omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
-    end
+    where(id: imdb_id).first_or_create omdb_to_hash(Omdb::Api.new.find(imdb_id)[:movie])
   end
 
   def self.find_by_title search
-    where(search).first_or_create do |m|
-      m = Movie.new omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
-    end
+    where(search).first_or_create omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
   end
 
   def poster(size=nil)
     if size.nil? and posters.length>0
-      #fetch the largest existing one, or the default if none exist
-      posters.order(size: :desc).first
+      posters.order(size: :desc).first    #fetch the largest existing one, or the default if none exist
     else
-      #fetch the size requested
-      Poster.fetch self, (size||300)
+      Poster.fetch self, (size||300)      #fetch the size requested
     end
   end
 
-  # overload accessors to get arrays from strings
-  def genre
-    convert_arrays(:genre)
-  end
-  def director
-    convert_arrays(:director)
-  end
-  def writer
-    convert_arrays(:writer)
-  end
-  def actors
-    convert_arrays(:actors)
-  end
-
-  # convert comma-separated strings to arrays
-  private 
-  def convert_arrays attribute
-    self[attribute].split(",").map{ |s| s.strip } unless self[attribute].nil?
-  end
-
+  private
   # Convert the Omdb::Movie object to a Hash to be saved as a new Movie
   def self.omdb_to_hash(omdb_movie)
 
     #copy accessors as hash: http://stackoverflow.com/a/16212180
     h = omdb_movie.instance_values.symbolize_keys
 
-    # replace reserved word "type"
-    h[:media_type] = h[:type]
+    h[:media_type] = h[:type]   # replace reserved word "type"
     h.delete :type
-    # replace imdb_id with id
-    h[:id] = h[:imdb_id]
+    h[:id] = h[:imdb_id]        # replace imdb_id with id
     h.delete :imdb_id
+    h.delete :poster
 
     # other subsitutions:
     h.each do |key, val|
       h[key] = nil if val == "N/A"
       h[key] = Date.parse(val) if key.in? [:released] #convert to date
+      h[key] = val.split(", ") if !val.nil? and key.in? [:genre, :director, :writer, :actors] #convert to arrays
     end
   end
 end

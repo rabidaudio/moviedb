@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212220237) do
+ActiveRecord::Schema.define(version: 20150216182526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,6 @@ ActiveRecord::Schema.define(version: 20150212220237) do
     t.string   "media_type"
     t.date     "released"
     t.string   "runtime"
-    t.string   "genre"
-    t.string   "director"
-    t.string   "writer"
-    t.string   "actors"
     t.string   "plot"
     t.string   "metascore"
     t.string   "language"
@@ -49,6 +45,10 @@ ActiveRecord::Schema.define(version: 20150212220237) do
     t.string   "box_office"
     t.string   "production"
     t.string   "website"
+    t.string   "genre",                            array: true
+    t.string   "director",                         array: true
+    t.string   "writer",                           array: true
+    t.string   "actors",                           array: true
   end
 
   add_index "movies", ["id"], name: "index_movies_on_id", using: :btree
