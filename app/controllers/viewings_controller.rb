@@ -1,19 +1,20 @@
 class ViewingsController < ApplicationController
   def show
     @viewing = Viewing.find(params[:id])
-    byebug
     @user =  @viewing.user
     @movie = @viewing.movie
   end
 
   def new
-    @viewing = Viewing.new
     @user = User.find params[:user_id] if params[:user_id]
+    redirect_to root_url if @user != current_user
+    @viewing = Viewing.new
   end
 
   def create
     @user = User.find params[:user_id]
-    #TODO stop if not current user
+    render body: "", status: :forbidden if @user != current_user
+    
     @viewing = Viewing.new viewing_params
     if params[:viewing][:movie_id]
       @viewing.movie = Movie.find params[:viewing][:movie_id]
@@ -23,7 +24,6 @@ class ViewingsController < ApplicationController
       @viewing.movie = Movie.find params[:viewing][:movie_name]
     end
     @viewing.user = @user
-    byebug
     @viewing.save!
     redirect_to @viewing
   end
