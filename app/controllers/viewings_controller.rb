@@ -7,8 +7,8 @@ class ViewingsController < ApplicationController
   end
 
   def new
-    @user = User.find params[:user_id] if params[:user_id]
-    require_current_user
+    @user = current_user
+    require_logged_in
     @viewing = Viewing.new
   end
 
@@ -19,8 +19,8 @@ class ViewingsController < ApplicationController
   end
 
   def create
-    @user = User.find params[:user_id]
-    require_current_user
+    @user = current_user
+    require_logged_in
 
     @viewing = Viewing.new viewing_params
 
@@ -65,11 +65,6 @@ class ViewingsController < ApplicationController
   private
   # convert form data to usable params
   def viewing_params
-    params.require(:viewing).permit(:rating, :comments, :format, :first_time, :date).tap do |v|
-
-      # v[:rating] = params[:rating].to_i
-      # v[:first_time] = v[:first_time] == "1"
-      # v[:date] = Date.new_from_hash params[:date]
-    end
+    params.require(:viewing).permit(:rating, :comments, :format, :first_time, :date)
   end
 end
