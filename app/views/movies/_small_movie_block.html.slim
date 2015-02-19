@@ -1,6 +1,6 @@
 .movie-block
   .row
-    -if @movie.poster
+    -if @movie.poster.try(:data)
       .four.columns
         img.poster src= movie_poster_path(@movie)
     .eight.columns

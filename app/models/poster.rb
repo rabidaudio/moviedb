@@ -15,7 +15,7 @@ class Poster < ActiveRecord::Base
       key = Moviedb::Application.config.OMDB_KEY
       url = "http://img.omdbapi.com/?apikey=#{key}&i=#{movie.id}&h=#{size||300}"
       response = Net::HTTP.get_response URI(url)
-      if response.body != "Error: API Key Not Valid!" and  Digest::MD5.hexdigest(response.body) != "0f61bf6d1829c92c4f5394bed991ebd4"
+      if response.body != "Error: API Key Not Valid!" and response.code != "404" # and  Digest::MD5.hexdigest(response.body) != "0f61bf6d1829c92c4f5394bed991ebd4"
         poster.content_type = response.content_type || 'image/jpeg'
         poster.data = response.body
       end
