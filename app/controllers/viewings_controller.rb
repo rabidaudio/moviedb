@@ -22,8 +22,6 @@ class ViewingsController < ApplicationController
     @user = User.find params[:user_id]
     require_current_user
 
-    byebug
-
     @viewing = Viewing.new viewing_params
 
     if !params[:viewing][:movie_id].empty?
@@ -36,7 +34,6 @@ class ViewingsController < ApplicationController
       end
       @viewing.movie = Movie.find_by_title search
     end
-    byebug
     @viewing.user = @user
     @viewing.save
     redirect_to @viewing
@@ -69,6 +66,7 @@ class ViewingsController < ApplicationController
   # convert form data to usable params
   def viewing_params
     params.require(:viewing).permit(:rating, :comments, :format, :first_time, :date).tap do |v|
+
       # v[:rating] = params[:rating].to_i
       # v[:first_time] = v[:first_time] == "1"
       # v[:date] = Date.new_from_hash params[:date]

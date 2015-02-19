@@ -10,7 +10,6 @@ class Movie < ActiveRecord::Base
 
   def self.find_by_title search
     h = omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
-    byebug
     where(search).first_or_create h
   end
 
