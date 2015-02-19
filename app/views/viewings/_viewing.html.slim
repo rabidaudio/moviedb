@@ -3,13 +3,11 @@ h1
 .info class= "first-time"
  | Watched 
  span == render partial: "date", locals: {date: @viewing.date}
-    / span = (@viewing.first_time ? "First Time" : "")
-- if !@viewing.format.empty?
-    p @viewing.format
+ -unless @viewing.format.nil?
+  span = "(#{viewing.format})"
+== render partial: "rating", object: @viewing.rating||0
 - if @viewing.comments
-  h5 Thoughts
   blockquote.comments
      == markdown_render(@viewing.comments)
-     == render partial: "rating", object: @viewing.rating
 - if @viewing.user == current_user
   a href=edit_viewing_path(@viewing) Make changes
