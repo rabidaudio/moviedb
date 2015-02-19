@@ -7,7 +7,7 @@ class Viewing < ActiveRecord::Base
     (1..5).to_a 
   end
 
-  # validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }, allow_nil: true
+  validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }, allow_nil: true
 
   # required for form helper
   def movie_name

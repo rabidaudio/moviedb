@@ -56,7 +56,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'omdb', git: "git://github.com/rabidaudio/omdb.git" #my version
+gem 'omdb', git: "git@github.com:jvanbaarsen/omdb.git" #bleeding edge
 
 gem 'omniauth-facebook'
 
@@ -70,7 +70,7 @@ group :development, :test do
   gem "rack-livereload"   # inserts the script to all the pages
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

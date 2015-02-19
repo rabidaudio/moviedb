@@ -18,7 +18,6 @@ class MoviesController < ApplicationController
           Omdb::Api.new.search(params[:q])[:movies]
         end
       rescue
-        puts "Error #{$!}"
         nil
       end
     end)
