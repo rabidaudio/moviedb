@@ -9,7 +9,9 @@ class Movie < ActiveRecord::Base
   end
 
   def self.find_by_title search
-    where(search).first_or_create omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
+    h = omdb_to_hash(Omdb::Api.new.fetch(search[:title], search[:year])[:movie])
+    byebug
+    where(search).first_or_create h
   end
 
   def poster(size=nil)

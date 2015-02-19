@@ -5,11 +5,12 @@
     br
     = f.hidden_field :movie_id
     i#loading.hidden class="fa fa-circle-o-notch fa-spin"
-    = f.text_field :movie_name, placeholder: "What did you watch?", class: ["u-full-width", "live-search"], value: (@viewing.movie.nil? ? "": "#{@viewing.movie.title} (#{@viewing.movie.year})")
+    = text_field_tag :movie_name, @viewing.movie.nil? ? nil: "#{@viewing.movie.title} (#{@viewing.movie.year})", placeholder: "What did you watch?", class: ["u-full-width", "live-search"]
   div.field
     span Time
     br
-    = datetime_select :date, Time.now
+    - @viewing.date = Time.now #set default
+    = f.datetime_local_field :date
   div.field
     span Source
     br

@@ -4,7 +4,7 @@
 $(document).ready(function(){
 
   //live search
-  $('#viewing_movie_name').marcoPolo({
+  $('#movie_name').marcoPolo({
     url: '/movies/search',
     minChars: 3,
     required: true,
@@ -14,7 +14,7 @@ $(document).ready(function(){
     },
     onSelect: function (data) {
       $('#viewing_movie_id').val(data.imdb_id);
-      $('#viewing_movie_name').val(data.title+" ("+data.year+")");
+      $('#movie_name').val(data.title+" ("+data.year+")");
     },
     formatNoResults: function(q){
       return "No results found.";

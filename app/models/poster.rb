@@ -11,7 +11,6 @@ class Poster < ActiveRecord::Base
     # make an OMDB request for it
     if poster.nil? or (poster.data.nil? and poster.updated_at < 1.week.ago)
       poster = Poster.new size: size, movie: movie
-
       key = Moviedb::Application.config.OMDB_KEY
       url = "http://img.omdbapi.com/?apikey=#{key}&i=#{movie.id}&h=#{size||300}"
       response = Net::HTTP.get_response URI(url)

@@ -13,10 +13,11 @@
 
 
 /* Bower Deps */
+//= require modernizr/modernizr
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
 //= require handlebars/handlebars.runtime
-//= require vagueTime.js/lib/vagueTime-en.js
+//= require vagueTime.js/lib/vagueTime-en
 
 //= require_tree ./templates
 //= require_tree .
