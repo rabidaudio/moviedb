@@ -1,46 +1,57 @@
 /* http://fontawesome.io/examples/ */
 
- @import 'colors';
+@import 'colors';
+
+@mixin star-unselected {
+    content: "\f006";
+    padding-right: 5px;
+    color: #777777;
+    font-size: 30px;
+}
+@mixin star-hover {
+    content: "\f005";
+    color:  $star-color-hover;
+    font-size: 30px;
+}
+@mixin star-selected {
+    content: "\f005";
+    color:  $star-color;
+    font-size: 30px;
+}
 
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
   font-size: 0px;
+  text-align: left;
   input {
     display: none;
   }
 
-  input[type="radio"]:checked + label.star:before,
-  input[type="radio"]:checked + label.star ~ label.star:before {
-    content: "\f005";
-    color:  $star-color;
-    font-size: 30px;
-  }
-
-  label.star:hover:before,
-  label.star:hover ~ label.star:before {
-    content: "\f005";
-    color:  $star-color-hover;
-    font-size: 30px;
-  }
-
-  label.star {
+  .star {
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
     display: inline-block;
-    // font-size: 30px;
     font-size: 0px;
+  }
+
+  .star:before {
+    @include star-unselected;
+  }
+
+  .star.selected:before,
+  input[type="radio"]:checked + label.star:before,
+  input[type="radio"]:checked + label.star ~ label.star:before {
+    @include star-selected;
   }
 
   label.star:hover {
     cursor: pointer;
   }
 
-  label.star:before {
-    content: "\f006";
-    padding-right: 5px;
-    color: #777777;
-    font-size: 30px;
+  label.star:hover:before,
+  label.star:hover ~ label.star:before {
+    @include star-hover;
   }
 }

@@ -1,0 +1,4 @@
+= stylesheet_link_tag 'rating'
+.rating
+  - Viewing.rating_range.reverse.each do |i|
+    .star class=(i<=rating ? "selected" : false)
