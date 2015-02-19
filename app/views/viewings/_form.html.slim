@@ -9,7 +9,7 @@
   div.field
     span Time
     br
-    - @viewing.date = Time.now #set default
+    - @viewing.date = Time.now if @viewing.new_record? #set default
     = f.datetime_local_field :date
   div.field
     span Source

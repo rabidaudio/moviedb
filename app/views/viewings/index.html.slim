@@ -1,2 +1,3 @@
 - @viewings.each do |v|
-  == render partial: "viewing", object: v
+  - puts v.date
+  == render partial: "viewing", locals: {viewing: v}

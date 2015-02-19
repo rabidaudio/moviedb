@@ -1,13 +1,15 @@
-h1
-  a href=url_for(@viewing.movie) = "#{@viewing.movie.title} (#{@viewing.movie.year})"
+h3
+  a href=url_for(viewing.movie) = "#{viewing.movie.title} (#{viewing.movie.year})"
 .info class= "first-time"
  | Watched 
- span == render partial: "date", locals: {date: @viewing.date}
- -unless @viewing.format.nil?
+ span == render partial: "date", locals: {date: viewing.date}
+ -unless viewing.format.nil?
   span = "(#{viewing.format})"
-== render partial: "rating", object: @viewing.rating||0
-- if @viewing.comments
+- if viewing.rating
+  == render partial: "rating", object: viewing.rating||0
+- if viewing.comments
   blockquote.comments
-     == markdown_render(@viewing.comments)
-- if @viewing.user == current_user
-  a href=edit_viewing_path(@viewing) Make changes
+     == markdown_render(viewing.comments)
+- if viewing.user == current_user
+  a href=edit_viewing_path(viewing) Make changes
+hr
