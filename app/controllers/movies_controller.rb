@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def poster
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.find_by id: params[:movie_id]
     poster = @movie.poster(params[:size])
     if poster.try(:data)
       send_data poster.data, :type => poster.content_type, :disposition => 'inline'
@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find_by(id: params[:id])
   end
 
   def title

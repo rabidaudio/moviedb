@@ -13,7 +13,7 @@
 
 
 /* Bower Deps */
-//= require modernizr/modernizr
+//* //= require modernizr/modernizr
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
 //= require handlebars/handlebars.runtime

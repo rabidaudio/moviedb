@@ -18,7 +18,7 @@ class Poster < ActiveRecord::Base
         poster.content_type = response.content_type || 'image/jpeg'
         poster.data = response.body
       end
-      poster.save!
+      poster.save
     end
     poster
   end
