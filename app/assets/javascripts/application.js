@@ -16,6 +16,29 @@
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
 //= require handlebars/handlebars.runtime
+//= require vagueTime.js/lib/vagueTime-en.js
 
 //= require_tree ./templates
 //= require_tree .
+
+$(document).ready(function(){
+
+  //make dates purty
+  function beautifyDates(){
+    $(".date").each(function(){
+      $(this).text(
+        vagueTime.get({
+          from: new Date(),                       //now
+          to: new Date($(this).attr("date")),     //then
+          units: 's'                              // returns '1 minute ago'
+        })
+      );
+    });
+  }
+
+  if($(".date").length){
+    beautifyDates();
+    setInterval(beautifyDates, 30*1000);        //update every 30 seconds
+  }
+
+});

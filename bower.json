@@ -10,6 +10,7 @@
     "skeleton-css": "*",
     "jquery-marcopolo": "1.8.1",
     "way.js": "*",
-    "handlebars": "*"
+    "handlebars": "*",
+    "vagueTime.js": "~1.2.0"
   }
 }

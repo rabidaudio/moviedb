@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   helper_method :log_in
   helper_method :title
 
+  helper MarkdownRendererHelper
+
   
   def render_error error_type
     error = Moviedb::Application.config.errors[error_type.to_s]

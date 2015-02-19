@@ -1,0 +1,10 @@
+/ h1 = "#{@viewing.movie.title} (#{@viewing.movie.year})"
+ul
+  li == render partial: "date", locals: {date: @viewing.date}
+  - if @viewing.format
+    li = @viewing.format
+  - if @viewing.rating
+    li = @viewing.rating
+.comments
+  - if @viewing.comments
+     == markdown_render(@viewing.comments)
