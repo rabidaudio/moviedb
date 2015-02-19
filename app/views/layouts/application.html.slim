@@ -5,8 +5,15 @@ html
     == stylesheet_link_tag 'application', media: 'all'
     == csrf_meta_tags
   body
-    .header
-      = render 'login_logout'
+    .header.row
+      .three.columns.left
+        == render 'login_logout'
+      .six.columns.center
+        h3 Dagbog Movie Diary
+      .three.columns.right
+        a href=new_viewing_path name="Add film"
+          i.add-film class="fa fa-plus-circle"
+    == render 'flash'
     .content
       == yield
 

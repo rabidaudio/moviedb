@@ -1,0 +1,9 @@
+h1 Come in
+
+a href="/auth/facebook"
+  h2 Via Facebook
+-if Rails.env.development? 
+  a href="/auth/development"
+    h2 Auto-signin
+h3 The old-fasioned way
+== render 'signin_form'

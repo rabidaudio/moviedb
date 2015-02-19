@@ -10,12 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ * removed: require_tree .
  *= require_self
 
   *** Bower Assets ***
  *= require skeleton-css/css/normalize
  *= require skeleton-css/css/skeleton
+ *= require jgrowl/jquery.jgrowl
  */
 
 @import "font-awesome-sprockets";
@@ -24,6 +25,7 @@
 
 
 @import 'colors';
+@import 'messages';
 
 .content {
   margin: auto;
@@ -31,6 +33,7 @@
   margin-top: 50px;
   padding: 30px;
 }
+
 @media (min-width: 750px) {
   .content{
     width: 80%;
@@ -44,12 +47,12 @@
 body {
   background-color: #d8d8d8;
 }
-.left {
-  float:left;
-}
-.right {
-  float: right;
-}
+// .left {
+//   float:left;
+// }
+// .right {
+//   float: right;
+// }
 
 form {
   .required:after {
@@ -88,4 +91,27 @@ form {
 .poster {
   width: 100%;
   max-width: 200px;
+}
+
+.header {
+  padding: 10px 50px;
+  text-align: center;
+
+  @media (min-width: 750px) {
+    .left {
+      text-align: left;
+    }
+    .center {
+      text-align: center;
+    }
+    .right {
+      text-align: right;
+    }
+  }
+
+  .add-film {
+    color: #222222;
+    font-size: 100px;
+    vertical-align: middle;
+  }
 }

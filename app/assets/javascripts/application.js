@@ -11,13 +11,14 @@
 // about supported directives.
 //
 
+// modernizr/modernizr
 
 /* Bower Deps */
-//* //= require modernizr/modernizr
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
 //= require handlebars/handlebars.runtime
 //= require vagueTime.js/lib/vagueTime-en
+// = require jgrowl/jquery.jgrowl
 
 //= require_tree ./templates
 //= require_tree .
@@ -41,5 +42,11 @@ $(document).ready(function(){
     beautifyDates();
     setInterval(beautifyDates, 30*1000);        //update every 30 seconds
   }
+
+
+  // flash messages with jGrowl
+  $('.flash').each(function(){
+    $.jGrowl($(this).text());
+  });
 
 });

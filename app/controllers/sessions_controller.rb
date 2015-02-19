@@ -5,6 +5,11 @@ class SessionsController < ApplicationController
     redirect_to @user
   end
 
+  #signin form
+  def new
+    flash[:notice] = "You're already logged in" and redirect_to current_user if logged_in?
+  end
+
   if Rails.env.development?
     def create_dev
       @user = User.first

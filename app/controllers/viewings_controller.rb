@@ -51,14 +51,16 @@ class ViewingsController < ApplicationController
 
   def index
     if params[:movie_id]
-      @movie = Movie.find(params[:movie_id])
+      @movie = Movie.find_by id: params[:movie_id]
       @viewings = @movie.viewings
     elsif params[:user_id]
       @user = User.find(params[:user_id])
       @viewings = @user.viewings
     else
-      @viewings = Viewing.all
+      @viewings = Viewing.all.limit(50)
     end
+    #limit
+    @viewings = @viewings.order(date: :desc).limit(20)
   end
 
 

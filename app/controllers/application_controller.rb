@@ -41,11 +41,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user
-    render body:"", status: :forbidden unless @user == current_user
+    redirect_to '/signin' unless @user == current_user
   end
 
   def require_logged_in
-    render body:"", status: :forbidden unless logged_in?
+    redirect_to '/signin' unless logged_in?
   end
 end
 

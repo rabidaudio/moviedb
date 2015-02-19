@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
-
+  match 'signin', to: 'sessions#new', as: 'signin', via: [:get]
   
   match 'auth/development', to: 'sessions#create_dev', via: [:get] if Rails.env.development? 
 
