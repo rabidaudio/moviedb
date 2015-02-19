@@ -1,0 +1,31 @@
+= stylesheet_link_tag 'rating'
+= form_for @viewing, url: (@viewing.new_record? ? user_viewings_path(@user, @viewing) : viewing_path(@viewing)), html: { "way-data" => "new-viewing", "way-persistent" => false } do |f|
+  div.field.search-container
+    span.required Name
+    br
+    = f.hidden_field :movie_id
+    = f.text_field :movie_name, placeholder: "What did you watch?", class: ["u-full-width", "live-search"]
+    i#loading.hidden class="fa fa-circle-o-notch fa-spin"
+  div.field
+    span Time
+    br
+    = datetime_select :date, Time.now
+  div.field
+    span Source
+    br
+    = f.text_field :format, placeholder: "Where are you watching it? (e.g. Netflix, Midtown Arts Cinema, etc.)", class: "u-full-width"
+  div.field
+    span Thoughts
+    br
+    = f.text_area :comments, placeholder: "Markdown-enabled", class: ["u-full-width", "sizable"]
+    span.rating
+      span Rating
+      br
+      - Viewing.rating_range.reverse.each do |r|
+        = f.radio_button :rating, r.to_s.to_sym, star: "#{r}", checked: (@viewing.new_record? ? false : (@viewing.rating==r))
+        = f.label "rating_#{r}", nil, class: "star"
+    br
+    = f.check_box :first_time
+    span &nbsp;I've seen this before
+  div.actions
+    = submit_tag (@viewing.new_record? ? "Add" : "Update"), class: ["button-primary"]

@@ -1,10 +1,16 @@
-/ h1 = "#{@viewing.movie.title} (#{@viewing.movie.year})"
-ul
-  li == render partial: "date", locals: {date: @viewing.date}
-  - if @viewing.format
-    li = @viewing.format
-  - if @viewing.rating
-    li = @viewing.rating
-.comments
-  - if @viewing.comments
+h1
+  a href=url_for(@viewing.movie) = "#{@viewing.movie.title} (#{@viewing.movie.year})"
+.info
+ | Watched 
+ span == render partial: "date", locals: {date: @viewing.date}
+
+  / - if @viewing.format
+  /   li = @viewing.format
+  / - if @viewing.rating
+  /   li = @viewing.rating
+- if @viewing.comments
+  h3 Comments
+  .comments
      == markdown_render(@viewing.comments)
+- if @viewing.user == current_user
+  a href=edit_viewing_path(@viewing) Make changes

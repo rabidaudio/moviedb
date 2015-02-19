@@ -39,5 +39,8 @@ $(document).ready(function(){
     })
     .blur(function(e){
       if($(this).val().length < 1) $(this).attr('rows', "1");
+    })
+    .each(function(){
+      if($(this).val().length > 1) $(this).attr('rows', "10");
     });
 });

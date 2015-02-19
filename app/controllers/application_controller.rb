@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
   def title
     ""
   end
+
+  def require_current_user
+    render body:"", status: :forbidden unless @user == current_user
+  end
 end
 
 

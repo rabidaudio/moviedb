@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :movies do 
     get 'poster' => 'movies#poster'
-    resources :viewings, shallow: true
+    resources :viewings, only: [:index]
     collection do
       get 'search' => 'movies#search'
     end
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :viewings, shallow: true
   end
-  resources :viewings
+  # resources :viewings
 
   #auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]
