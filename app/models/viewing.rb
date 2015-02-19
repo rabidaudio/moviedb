@@ -11,10 +11,6 @@ class Viewing < ActiveRecord::Base
 
   validates :rating, numericality: { only_integer: true }, inclusion: { in: self.rating_range }, allow_nil: true
 
-  def render_comments
-    Redcarpet::Markdown.new.render comments
-  end
-
   private
   # http://stackoverflow.com/questions/1183506/make-blank-params-nil
   def nil_if_blank

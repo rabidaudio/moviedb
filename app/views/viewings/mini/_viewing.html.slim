@@ -1,0 +1,5 @@
+h3
+  a href=url_for(@viewing) = "#{@viewing.movie.title} (#{@viewing.movie.year})"
+.info = "Watched on"
+/#{@viewing.date.strftime %b %d, %Y}
+/#{@viewing.first_time ? 'for the first time' : 'again'}

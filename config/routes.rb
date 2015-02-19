@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :viewings, shallow: true
+    resources :viewings, only: [:index]
   end
-  # resources :viewings
+  resources :viewings
 
   #auth
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get]
@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   #static pages
   root 'static_pages#home'
   get '/privacy' => 'static_pages#privacy'
+  get '/about' => 'static_pages#about'
 
 end

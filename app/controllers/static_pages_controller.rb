@@ -5,6 +5,9 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
+  def about
+  end
+
   def title
     (params[:action] || super).capitalize
   end
