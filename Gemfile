@@ -56,7 +56,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'omdb', git: "git@github.com:jvanbaarsen/omdb.git" #bleeding edge
+gem 'omdb', git: "git://github.com/jvanbaarsen/omdb.git" #bleeding edge
 
 gem 'omniauth-facebook'
 
