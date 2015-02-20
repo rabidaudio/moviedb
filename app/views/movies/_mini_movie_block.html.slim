@@ -1,9 +1,12 @@
-.movie-block-mini.result
-  -if movie.poster
-    .left
-      img.poster src= movie_poster_path(movie)
-  div class=("right" if movie.poster)
-    h4 = "#{movie.title} - #{movie.type.capitalize} (#{movie.year})"
+.movie-block-mini
+  .row
+    -if movie.poster.try(:data)
+      .two.columns
+        img.poster src= movie_poster_path(movie)
+    .ten.columns
+      a href= url_for(movie)
+        h2.title = movie.title
+      h5 #{movie.media_type.try(:capitalize)} (#{movie.year})
 
 
 

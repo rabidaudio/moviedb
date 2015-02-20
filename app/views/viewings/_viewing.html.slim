@@ -1,5 +1,7 @@
-h3
-  a href=url_for(viewing.movie) = "#{viewing.movie.title} (#{viewing.movie.year})"
+/ h3
+/   a href=url_for(viewing.movie) #{viewing.movie.title_and_year}
+== render partial: "/movies/small_movie_block", locals: {movie: viewing.movie}
+hr
 .info class= "first-time"
  | Watched 
  span == render partial: "date", locals: {date: viewing.date}
@@ -12,4 +14,3 @@ h3
      == markdown_render(viewing.comments)
 - if viewing.user == current_user
   a href=edit_viewing_path(viewing) Make changes
-hr

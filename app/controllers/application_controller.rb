@@ -48,14 +48,3 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "You must sign in in first." and redirect_to '/signin' unless logged_in?
   end
 end
-
-
-
-# <div id="user_nav">
-#   <% if current_user %>
-#     Signed in as <strong><%= current_user.name %></strong>!
-#     <%= link_to "Sign out", signout_path, id: "sign_out" %>
-#   <% else %>
-#     <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-#   <% end %>
-# </div>

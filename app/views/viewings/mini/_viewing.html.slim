@@ -1,13 +1,14 @@
-.viewing.mini.row
-  - poster = !viewing.movie.poster.try(:data).nil?
-  - if poster
-    .two.columns
-      a href = url_for(viewing)
-        img.poster src= movie_poster_path(viewing.movie)
-  .columns class=(poster ? "ten" : "twelve")
-    h4
-      a href=url_for(viewing) = "#{viewing.movie.title} (#{viewing.movie.year})"
-    .info
-      ' #{viewing.user.name||'Anonymous'} watched #{viewing.first_time ? 'for the first time' : 'again'}
-      == render partial: "date", locals: {date: viewing.date}
-hr
+.viewing.mini
+  .row
+    - poster = !viewing.movie.poster.try(:data).nil?
+    - if poster
+      .two.columns
+        a href= url_for(viewing.movie)
+          img.poster src= movie_poster_path(viewing.movie)
+    .columns class=(poster ? "ten" : "twelve")
+      h4 #{viewing.movie.title_and_year}
+      .info
+        ' #{viewing.user.name||'Anonymous'} watched #{viewing.first_time ? 'for the first time' : 'again'}
+        == render partial: "date", locals: {date: viewing.date}
+  a href= url_for(viewing)
+    span.clickable-div
