@@ -13,7 +13,7 @@
         li.rated    = "Rated: #{movie.rated}"        if movie.rated
         li.runtime  = "Runtime: #{movie.runtime}"    if movie.runtime
         li.viewers
-          a href= movie_viewings_path(movie) = "Viewers: #{movie.viewings.length}"
+          a href= movie_viewings_path(movie) Viewers: #{movie.viewings.group(:user).count.length}
       - if movie.plot
         h3 Plot
         p.plot = movie.plot
