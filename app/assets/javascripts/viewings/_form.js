@@ -34,13 +34,15 @@ $(document).ready(function(){
   // expanding comments block
   $('#viewing_comments')
     .focus(function(e){
-      $(this).attr('rows', "10");
+      $(this).css('height', 300);
     })
     .blur(function(e){
-      if($(this).val().length < 1) $(this).attr('rows', "1");
+      if($(this).val().length < 1) 
+        $(this).css('height', 0);
     })
     .each(function(){
-      if($(this).val().length > 1) $(this).attr('rows', "10");
+      if($(this).val().length > 1)
+        $(this).css('height', 300);
     });
 
   //clear ratings button
