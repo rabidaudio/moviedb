@@ -55,3 +55,12 @@
     @include star-hover;
   }
 }
+
+.clear-rating {
+  color: #828282;
+  text-decoration: none;
+  vertical-align: super;
+  font-size: .7em;
+  text-transform: uppercase;
+  display: none;
+}

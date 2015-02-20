@@ -1,7 +1,8 @@
 .loginlogout
   -if not logged_in?
-    a href="/auth/facebook" Sign in via Facebook
+    a href="/signin" Sign In
   -else
-    a href=user_path(current_user) = "Signed in as #{current_user.short_name}"
-    span &nbsp;
+    ' Signed in as
+    a href=user_path(current_user) #{current_user.short_name}
+    '.
     a href="/signout" Sign out

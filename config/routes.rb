@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :viewings, only: [:index]
+    # resources :viewings, only: [:index]
   end
   resources :viewings
 

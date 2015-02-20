@@ -1,11 +1,11 @@
 = stylesheet_link_tag 'rating'
-= form_for @viewing, url: (@viewing.new_record? ? user_viewings_path(@user, @viewing) : viewing_path(@viewing)) do |f|
+= form_for @viewing do |f|
   div.field.search-container
     span.required Name
     br
     = f.hidden_field :movie_id
     i#loading.hidden class="fa fa-circle-o-notch fa-spin"
-    = text_field_tag :movie_name, @viewing.movie.nil? ? nil: "#{@viewing.movie.title} (#{@viewing.movie.year})", placeholder: "What did you watch?", class: ["u-full-width", "live-search"]
+    = text_field_tag :movie_name, (@viewing.movie.nil? ? "" : @viewing.movie.title_and_year), placeholder: "What did you watch?", class: ["u-full-width", "live-search"]
   div.field
     span Time
     br
@@ -25,6 +25,7 @@
       - Viewing.rating_range.reverse.each do |r|
         = f.radio_button :rating, r.to_s.to_sym, star: "#{r}", checked: (@viewing.new_record? ? false : (@viewing.rating==r))
         = f.label "rating_#{r}", nil, class: "star"
+    a.clear-rating href="#" Clear
     br
     = f.check_box :first_time
     span &nbsp;I've never seen this before

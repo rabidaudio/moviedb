@@ -21,6 +21,10 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def title_and_year
+    "#{title} (#{year})"
+  end
+
   private
   # Convert the Omdb::Movie object to a Hash to be saved as a new Movie
   def self.omdb_to_hash(omdb_movie)

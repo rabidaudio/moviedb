@@ -46,7 +46,9 @@ $(document).ready(function(){
 
   // flash messages with jGrowl
   $('.flash').each(function(){
-    $.jGrowl($(this).text());
+    $.jGrowl($(this).text(), {
+      position: "center"
+    });
   });
 
 });

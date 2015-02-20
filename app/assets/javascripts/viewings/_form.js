@@ -4,6 +4,7 @@
 $(document).ready(function(){
 
   //live search
+  var input = $('#movie_name').val();
   $('#movie_name').marcoPolo({
     url: '/movies/search',
     minChars: 3,
@@ -27,10 +28,8 @@ $(document).ready(function(){
     },
     formatMinChars: function(){} //no-op
   });
-
-  // switch option for stars if JS is enabled
-  $('#rating').hide();
-  $('.rating').show();
+  //this is a hack because initalizing runs onSelect and writes 'undefined (undefined)'
+  $('#movie_name').val(input); //write it back after
 
   // expanding comments block
   $('#viewing_comments')
@@ -43,4 +42,14 @@ $(document).ready(function(){
     .each(function(){
       if($(this).val().length > 1) $(this).attr('rows', "10");
     });
+
+  //clear ratings button
+  $('.clear-rating').click(function(e){
+    e.preventDefault();
+    $('.rating input').prop('checked', false);
+    $(this).hide();
+  });
+  $('.rating input').click(function(){
+    $('.clear-rating').show();
+  });
 });

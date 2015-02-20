@@ -1,6 +1,5 @@
 h1 = @user.name
 
 H3 Recent Movies
-ul
-  - @user.viewings.order(:date).limit(10).each do |v|
-    li = "#{v.date}, #{v.movie.title}"
+- @user.viewings.order(date: :desc).limit(20).each do |v|
+  == render partial: "viewings/mini/viewing", locals: {viewing: v}

@@ -41,11 +41,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user
-    redirect_to '/signin' unless @user == current_user
+    flash[:alert] = "You can't edit someone else's items." and redirect_to @user unless @user == current_user
   end
 
   def require_logged_in
-    redirect_to '/signin' unless logged_in?
+    flash[:alert] = "You must sign in in first." and redirect_to '/signin' unless logged_in?
   end
 end
 
